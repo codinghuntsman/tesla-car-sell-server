@@ -5,6 +5,9 @@ require('dotenv').config();
 const port = process.env.PORT || 5000
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
+//-----------delete specific id-------------
+const ObjectId = require("mongodb").ObjectId;
+
 
 
 //-------Middleware---------
@@ -42,6 +45,15 @@ async function run() {
             const purchaseInfo = req.body;
             const query = { name: purchaseInfo.name, email: purchaseInfo.email, phone: purchaseInfo.phone, quantity: purchaseInfo.quantity, bankAccount: purchaseInfo.bankAccount }
             const result = await orderCollection.insertOne(query);
+            res.send(result);
+        });
+
+        //--------Get a single user data from database-----------------
+        //--------Get a single user data from database-----------------
+        app.get('/products/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await productCollection.findOne(query);
             res.send(result);
         });
 

@@ -51,7 +51,15 @@ async function run() {
             res.send(result);
         });
 
-        //--------get each bookings patient--------------
+        //--------Delete a users order from database---------
+        app.delete('/order/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await orderCollection.deleteOne(query);
+            res.send(result);
+        });
+
+        //--------get each bookings order--------------
         app.get('/order', async (req, res) => {
             const customerEmail = req.query.patientEmail;
             const query = { customerEmail: customerEmail };

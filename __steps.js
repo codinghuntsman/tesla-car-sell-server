@@ -16,4 +16,7 @@
  * 
  **----------Connect server side with Database---------
  * Go to mongodb atlas and create a new project
+ * 
+ **-------Use this command server side for Run-------------
+ * npm run start-dev
 */

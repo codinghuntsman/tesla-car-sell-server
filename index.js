@@ -43,12 +43,23 @@ async function run() {
         //--------add a new booking or create--------------------
         app.post('/purchase', async (req, res) => {
             const purchaseInfo = req.body;
-            const query = { name: purchaseInfo.name, email: purchaseInfo.email, phone: purchaseInfo.phone, quantity: purchaseInfo.quantity, bankAccount: purchaseInfo.bankAccount }
+            const query = {
+                name: purchaseInfo.name, email: purchaseInfo.email, phone: purchaseInfo.phone,
+                quantity: purchaseInfo.quantity, country: purchaseInfo.country, location: purchaseInfo.location
+            }
             const result = await orderCollection.insertOne(query);
             res.send(result);
         });
 
-        //--------Get a single user data from database-----------------
+        //--------get each bookings patient--------------
+        app.get('/order', async (req, res) => {
+            const customerEmail = req.query.patientEmail;
+            const query = { customerEmail: customerEmail };
+            const bookingOrder = await orderCollection.find(query).toArray();
+            res.send(bookingOrder);
+
+        })
+
         //--------Get a single user data from database-----------------
         app.get('/products/:id', async (req, res) => {
             const id = req.params.id;

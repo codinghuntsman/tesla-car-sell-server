@@ -9,13 +9,10 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const ObjectId = require("mongodb").ObjectId;
 
 
-
 //-------Middleware---------
 app.use(cors());
 app.use(express.json());
 
-// pass: gHlseJm07Ctonez7
-// name: tesla-manufacturing
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1uon8.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -39,7 +36,6 @@ async function run() {
         });
 
 
-
         //--------add a new booking or create--------------------
         app.post('/purchase', async (req, res) => {
             const purchaseInfo = req.body;
@@ -51,6 +47,7 @@ async function run() {
             res.send(result);
         });
 
+
         //--------Delete a users order from database---------
         app.delete('/order/:id', async (req, res) => {
             const id = req.params.id;
@@ -58,6 +55,7 @@ async function run() {
             const result = await orderCollection.deleteOne(query);
             res.send(result);
         });
+
 
         //--------get each bookings order--------------
         app.get('/order', async (req, res) => {

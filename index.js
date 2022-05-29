@@ -66,7 +66,7 @@ async function run() {
             const bookingOrder = await orderCollection.find(query).toArray();
             res.send(bookingOrder);
 
-        })
+        });
 
         //--------Get a single user data from database-----------------
         app.get('/products/:id', async (req, res) => {
@@ -79,17 +79,17 @@ async function run() {
     }
     finally {
         // await client.close();
-    }
+    };
 
-}
+};
 run().catch(console.dir);
 
 
 
 app.get('/', (req, res) => {
-    res.send('Hello from tesla manufacturing !')
-})
+    res.send('Hello from tesla manufacturing !');
+});
 
 app.listen(port, () => {
-    console.log(`Tesla apps listening on ${port}`)
-})
+    console.log(`Tesla apps listening on ${port}`);
+});

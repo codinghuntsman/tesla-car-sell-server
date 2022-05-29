@@ -85,7 +85,7 @@ async function run() {
 run().catch(console.dir);
 
 
-
+// Root get get method---------------
 app.get('/', (req, res) => {
     res.send('Hello from tesla manufacturing !');
 });
